@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Savannah</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ff7733;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            height: 100vh;
+            position: relative;
+            padding-top: 20px;
+        }
+        .message-container {
+            background-color: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.455);
+            transition: opacity 1s ease-in-out;
+            opacity: 0;
+            height: auto;
+            width: 80%;
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .show-message {
+            opacity: 1;
+        }
+        .clicked {
+            color: #ff69b4;
+        }
+        #message, #message-2, #message-3 {
+            white-space: pre-wrap;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #message-container-3 {
+            position: relative;
+            text-align: center;
+            max-width: 80vw;
+            height: 170px; /* Fixed height */
+            overflow-y: auto; /* Enable scrolling */
+            white-space: pre wrap; /* Ensure long text wraps */
+            word-wrap: break-word; /* Prevent overflow */
+        }
+        #toggle-audio, #toggle-audio-2 {
+            display: none;
+            margin-left: 20px;
+        }
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .heart-container {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .image-container {
+            text-align: center;
+            margin: 10px 0;
+            display: none;
+        }
+        .audio-titles {
+            display: none;
+            text-align: center;
+            margin-top: 5px;
+        }
+        .image-container img {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex justify-center items-center flex-col w-[100vw] h-[100vh]">
+        <div class="heart-container">
+            <i id="solid-heart" class="fa-solid fa-heart fa-beat fa-2x" style="color: #ff0000;"></i>
+        </div>
+
+        <div id="image-container" class="image-container">
+            <img src="https://media1.tenor.com/m/K-X5tGtujTUAAAAC/guitar-music.gif" alt="Image Description">
+        </div>
+
+        <div id="audio-titles" class="audio-titles">
+            <h3 class="font-bold">Audio 1 title - Harana</h3>
+            <h3 class="font-bold">Audio 2 title - Aphrodite</h3>
+        </div>
+
+        <div id="message-container" class="message-container">
+            <article id="message" class="prose"></article>
+        </div>
+
+        <div id="message-container-2" class="message-container" style="display: none;">
+            <article id="message-2" class="prose"></article>
+        </div>
+
+        <div id="message-container-3" class="message-container">
+            <article id="message-3" class="prose"></article>
+        </div>
+
+        <audio id="background-music" src="NIKI - Take A Chance With Me (Lyrics).mp3" loop></audio>
+        <audio id="heart-sound" src="Click - Sound Effect (HD).mp3"></audio>
+        <audio id="new-audio" src="harana.mp3"></audio>
+        <audio id="second-audio" src="aphrodite.mp3"></audio>
+        <audio id="click-sound" src="Click - Sound Effect (HD).mp3"></audio> <!-- Click sound for audio buttons -->
+
+        <div class="audio-controls">
+            <div>
+                <button id="toggle-audio" class="mt-2 p-2 bg-blue-500 text-white rounded">Play/Pause Audio 1</button>
+            </div>
+            <div>
+                <button id="toggle-audio-2" class="mt-2 p-2 bg-green-500 text-white rounded">Play/Pause Audio 2</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const heart = document.getElementById('solid-heart');
+        const messageContainer = document.getElementById('message-container');
+        const messageElement = document.getElementById('message');
+        const messageContainer2 = document.getElementById('message-container-2');
+        const messageElement2 = document.getElementById('message-2');
+        const messageContainer3 = document.getElementById('message-container-3');
+        const messageElement3 = document.getElementById('message-3');
+        const newAudio = document.getElementById('new-audio');
+        const backgroundMusic = document.getElementById('background-music');
+        const secondAudio = document.getElementById('second-audio');
+        const toggleAudioButton = document.getElementById('toggle-audio');
+        const toggleAudioButton2 = document.getElementById('toggle-audio-2');
+        const imageContainer = document.getElementById('image-container');
+        const audioTitles = document.getElementById('audio-titles');
+        const clickSound = document.getElementById('click-sound');
+
+        const messageText = "Hello Savannah!";
+        const messageText2 = "You can just call me Pluvio. I'm 22 years old and currently a 4th year nursing student at University of San Jose-Recoletos. Yes, we attended the same school that is why i know you.";
+        const messageText3 = "I hope dli raka ma creepyhan ani or what. I just want to express my admiration for you. I intend to talk to you in person but I'm shy haha and busy pud kos duty namo. Honestly, I only saw you twice. The first time was way back in April this year, during the last semester.  You are with your friends and pagawas namos canteen and ako kay pasud pas canteen, and there I saw you laughing. Maybe one of your friends crack a joke. From the moment i saw and heared you laugh, I wanted to get to know you more. Sadly, After that day, wala nako kita nimo balik. And thank God i saw you again this sem. This sem on the lobby while gabayad kos tuition fee nako nga puryagaba maka buslot sa bulsa. While ga wait kos turn nako kay I saw you there pero glimpse lng sya kay palakaw mo pagawas sa school. Everytime i see you, you're always smiling. I really love your smile jud. I don't know your name yet during this time but while im scrolling sa Tiktok, i saw your video and thought na this girl is very familiar. Your name is also pretty just like you. I follow you immediately jud and commented sa video nimo. You don't have any idea how kilig I was when tiktok notify me that you like my comment haha. I'm ngsb and this is my first time feeling this because of someone. I'm not really good at expressing my feelings to someone but with you, its different. There's something about your presence that makes me want to try to open up, to let you in. Although, im still shy in person  but i did this. You make me want to try making an effort to someone. For you, I'm willing to try. Because you deserve to know that your laughter lights up my world. Ang cringe pero there's no other words to explain it. Also, Since i followed you, I saw some of your reposts. There i realized that ang dami mo pong worries. I'm not an expert at giving advice but please remember and trust that things have a way of working out, even if the path there isn't always clear. The things you're worried about now may seem daunting, but they're just stepping stones on the path to something greater, something bigger. Eveything you're worried about is going to turn out okay. And yes, because of tiktok also, I'm 100% confident na i know your favorite artist thus the reason why I add one of NIKI's songs as a background song. I'm not familiar with NIKI but since I'm your number 1 fan, i started listening to some of her songs. She's an underrated singer. I hope my admiration for you will not give you a reason to block me on tiktok or remove me from your followers. But if you do, then it's okay.  Oh i also added 2 songs dedicated for you hehe. Click the heart again and click an audio at the bottom one at a time. Please don't judge my voice. Anyways, THANK YOU SO MUCH FOR CLICKING THE LINK,i know na its really suspicious since im someone na you don't know. Thank you so much for letting me express my admiration for you. Have a good day, Savannah.";
+        let index = 0;
+        let index2 = 0;
+        let index3 = 0;
+        let heartClickCount = 0;
+
+        messageContainer.style.opacity = '0';
+        messageContainer2.style.opacity = '0';
+        messageContainer3.style.opacity = '0';
+
+        heart.addEventListener('click', () => {
+            document.getElementById('heart-sound').play();
+            clickSound.play(); // Play click sound when heart is clicked
+
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+            }
+
+            heartClickCount++;
+
+            heart.classList.toggle('clicked');
+
+            if (heartClickCount === 1) {
+                messageContainer.classList.add('show-message');
+                messageContainer.style.opacity = '1';
+                if (index === 0) {
+                    typeMessage();
+                }
+            } else if (heartClickCount === 2) {
+                messageContainer.classList.remove('show-message');
+                messageContainer.style.opacity = '0';
+                messageContainer2.classList.add('show-message');
+                messageContainer2.style.opacity = '1';
+                if (index2 === 0) {
+                    typeMessage2();
+                }
+            } else if (heartClickCount === 3) {
+                messageContainer2.classList.remove('show-message');
+                messageContainer2.style.opacity = '0';
+                messageContainer3.classList.add('show-message');
+                messageContainer3.style.opacity = '1';
+                if (index3 === 0) {
+                    typeMessage3();
+                }
+            } else if (heartClickCount === 4) {
+                messageContainer3.classList.remove('show-message');
+                messageContainer3.style.opacity = '0';
+                imageContainer.style.display = 'block';
+                audioTitles.style.display = 'block';
+                toggleAudioButton.style.display = 'block';
+                toggleAudioButton2.style.display = 'block';
+            }
+        });
+
+        function typeMessage() {
+            if (index < messageText.length) {
+                messageElement.textContent += messageText.charAt(index);
+                index++;
+                setTimeout(typeMessage, 100);
+            } else {
+                setTimeout(() => {
+                    messageContainer2.style.display = 'block';
+                    messageContainer2.classList.add('show-message');
+                    messageContainer2.style.opacity = '1';
+                    typeMessage2();
+                }, 500);
+            }
+        }
+
+        function typeMessage2() {
+            if (index2 < messageText2.length) {
+                messageElement2.textContent += messageText2.charAt(index2);
+                index2++;
+                setTimeout(typeMessage2, 100);
+            }
+        }
+
+        function typeMessage3() {
+            if (index3 < messageText3.length) {
+                messageElement3.textContent += messageText3.charAt(index3);
+                index3++;
+                setTimeout(typeMessage3, 100);
+            }
+        }
+
+        toggleAudioButton.addEventListener('click', () => {
+            clickSound.play(); // Play click sound for audio button
+            if (newAudio.paused) {
+                newAudio.play();
+                backgroundMusic.pause();
+            } else {
+                newAudio.pause();
+            }
+        });
+
+        toggleAudioButton2.addEventListener('click', () => {
+            clickSound.play(); // Play click sound for second audio button
+            if (secondAudio.paused) {
+                secondAudio.play();
+                backgroundMusic.pause();
+            } else {
+                secondAudio.pause();
+            }
+        });
+    </script>
+</body>
+</html>
